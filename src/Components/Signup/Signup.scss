@@ -71,17 +71,21 @@
   
 
   @include mobile {
-    max-width: 90%;
-    margin-top: 1.5rem; /* Réduction de la marge sur mobile */
+    width: 90%;
+    margin-top: 1.5rem;
+    margin-left: 5px;  /* Réduction de la marge sur mobile */
   }
 
   @include tablet {
-    margin-top: 1.5rem; /* Ajustement de l'espace sur tablette */
-    max-width: 450px;
+    width: 90%;
+    margin-top: 1.5rem;
+    margin-left: 5px; 
   }
 
   @include laptop {
-    max-width: 60%;
+    width: 90%;
+    margin-top: 1.5rem;
+    margin-left: 5px; 
   }
 
   @include desktop {

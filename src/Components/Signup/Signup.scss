@@ -1,0 +1,234 @@
+@import "../../Style/App.scss"; 
+
+/* Conteneur principal */
+.signup-page-container {
+  display: flex;
+  flex-direction: column; /* Par défaut sur mobile */
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  max-width: 100%; 
+  min-height: 100vh;
+
+  @include desktop {
+    flex-direction: row; 
+    justify-content: space-between; 
+    align-items: center;
+    max-width: 80%;
+    margin:  auto; 
+  }
+}
+
+/* Logo et slogan */
+.logo-signup-container {
+  text-align: center;
+
+  @include desktop {
+    text-align: left; 
+    width: 45%; 
+  }
+
+  img {
+    max-width: 100%; 
+    height: auto;
+    margin-bottom: -3rem;
+
+    @include mobile {
+      margin-bottom: 0.5rem; 
+    }
+    
+  }
+
+  p {
+    text-align: center;
+    font-size: 18px;
+    color: #eee;
+    margin-top: -3rem;
+    
+
+    @include tablet {
+      font-size: 22px;
+    }
+
+    @include desktop {
+      text-align: left;
+      font-size: 26px;
+    }
+  }
+}
+
+/* Conteneur du formulaire */
+.signup-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 2rem; 
+  
+
+  @include mobile {
+    max-width: 90%;
+    margin-top: 1.5rem; /* Réduction de la marge sur mobile */
+  }
+
+  @include tablet {
+    margin-top: 1.5rem; /* Ajustement de l'espace sur tablette */
+    max-width: 450px;
+  }
+
+  @include laptop {
+    max-width: 60%;
+  }
+
+  @include desktop {
+    width: 45%; 
+    margin-left: 50px; /* Ajustement de la marge sur desktop */
+  }
+}
+
+/* Titre du formulaire */
+h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #eee;
+
+  @include mobile {
+    font-size: 24px;
+  }
+
+  @include tablet {
+    font-size: 28px;
+  }
+
+  @include desktop {
+    text-align: left;
+    font-size: 38px; /* Taille augmentée sur desktop */
+  }
+}
+
+/* Texte sous le formulaire */
+p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #eee;
+
+  @include mobile {
+    font-size: 14px;
+  }
+
+  @include desktop {
+    text-align: left;
+  }
+}
+
+/* Séparateur */
+.separator {
+  display: none; /* Cacher sur mobile */
+
+  @include desktop {
+    display: block;
+    position: absolute;
+    height: 80%; 
+    width: 2px;
+    background-color: #eee;
+    left: 50%; 
+    transform: translateX(-50%);
+  }
+}
+
+/* Champs du formulaire */
+.signup-form input {
+  width: 100%; 
+  padding: 12px;
+  margin: 10px 0; 
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box; 
+
+  @include mobile {
+    width: 100%; 
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  @include tablet {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  @include laptop {
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  @include desktop {
+    width: 100%; 
+    padding: 15px;
+    font-size: 18px; 
+  }
+}
+
+/* Bouton du formulaire */
+.signup-form button {
+  width: 100%; /* Largeur pleine */
+  padding: 12px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  text-align: center; /* Centrer le texte du bouton */
+
+  &:hover {
+    background-color: #eee;
+    color: #007BFF;
+  }
+
+  @include mobile {
+    padding: 10px;
+    font-size: 14px; /* Taille réduite sur mobile */
+  }
+
+  @include tablet {
+    padding: 12px;
+    font-size: 16px; /* Taille normale sur tablette */
+  }
+
+  @include desktop {
+    padding: 15px;
+    font-size: 18px; /* Taille plus grande sur les grands écrans */
+  }
+}
+
+/* Lien de connexion */
+.signup-form-container a {
+  color: #eee;
+  font-size: 14px; /* Petite taille sur mobile */
+  margin-top: 10px; /* Ajouter un espace sous le bouton */
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @include mobile {
+    font-size: 14px;
+  }
+
+  @include tablet {
+    font-size: 16px;
+  }
+
+  @include desktop {
+    font-size: 16px; /* Taille augmentée sur desktop */
+  }
+}

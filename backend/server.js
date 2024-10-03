@@ -1,10 +1,16 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import authRoutes from './routes/authRoutes.js';
 
 dotenv.config();  // Charger les variables d'environnement
 
 const app = express();
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true,
+}));
+
 app.use(express.json());  // Permet de lire le body des requêtes en JSON
 
 // Utilisation des routes d'authentification

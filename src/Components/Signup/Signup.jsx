@@ -17,22 +17,22 @@ function Signup() {
     setSuccessMessage('');
 
     if (password !== confirmPassword) {
-      setErrorMessage('les mots depasse ne correspondent pas');
-
+      setErrorMessage('Les mots de passe ne correspondent pas');
       return;
     }
-
+  
     try {
-      const response = await fetch('http://localhost:5000/api/signup', {
-        methode: 'POST',
-        headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify({ email, password }),
+      const response = await fetch('http://localhost:5000/api/auth/signup', {
+        method: 'POST',  // Spécifier ici la méthode POST
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),  // Envoyer les données au backend
       });
-
+  
       if (!response.ok) {
-        const errorData =  await response.json();
-        setErrorMessage(errorData.message || ' erreur lors de l\'inscription');
-
+        const errorData = await response.json();
+        setErrorMessage(errorData.message || 'Erreur lors de l\'inscription');
         return;
       }
 

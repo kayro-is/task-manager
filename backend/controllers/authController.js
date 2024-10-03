@@ -2,10 +2,10 @@ import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
-import { Op } from 'sequelize';  // Importer les opérateurs Sequelize
-import User from '../models/userModel.js';  // Modèle User avec Sequelize
+import { Op } from 'sequelize';
+import User from '../models/userModel.js'; // Modèle User avec Sequelize
 
-dotenv.config();  // Charger les variables d'environnement
+dotenv.config(); // Charger les variables d'environnement
 
 // Fonction pour la demande de réinitialisation du mot de passe
 export const forgotPassword = async (req, res) => {
@@ -73,7 +73,7 @@ export const resetPassword = async (req, res) => {
       where: {
         reset_password_token: token,
         reset_password_expires: {
-          [Op.gt]: new Date(),  // Sequelize opérateur pour vérifier que la date est supérieure à la date actuelle
+          [Op.gt]: new Date(), // Vérifie si la date d'expiration est supérieure à la date actuelle
         },
       },
     });
@@ -96,5 +96,29 @@ export const resetPassword = async (req, res) => {
   } catch (error) {
     console.error('Erreur dans resetPassword:', error);
     res.status(500).json({ message: 'Erreur serveur, veuillez réessayer plus tard.' });
+  }
+};
+
+// Fonction pour l'inscription d'un nouvel utilisateur
+export const signup = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Vérifier si l'utilisateur existe déjà
+    const existingUser = await User.findOne({ where: { email } });
+    if (existingUser) {
+      return res.status(400).json({ message: 'Cet email est déjà utilisé' });
+    }
+
+    // Hacher le mot de passe
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Créer un nouvel utilisateur
+    const newUser = await User.create({ email, password: hashedPassword });
+
+    res.status(201).json({ message: 'Inscription réussie', user: newUser });
+  } catch (error) {
+    console.error('Erreur dans signup:', error);
+    res.status(500).json({ message: 'Erreur lors de l\'inscription. Veuillez réessayer plus tard.' });
   }
 };
